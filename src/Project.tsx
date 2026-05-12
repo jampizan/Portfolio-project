@@ -1,40 +1,46 @@
 import { Link } from 'react-router-dom';
 
+import fglab2 from './assets/fglab2.png';
+import mglab5 from './assets/mglab5.png';
+import finalslab2 from './assets/finalslab2.png';
+import mglab6 from './assets/mglab6.png';
+import portfolio from './assets/portfolio.png';
+
 export default function Project() {
   const projects = [
     {
       id: 1,
       title: "Typescript and Rendering",
       description: "Building this student dashboard really showed me how TypeScript keeps a React project structured and manageable. It was a great way to practice using conditional rendering and lists to create a UI that feels clean and efficient.", 
-      image: "src/assets/fglab2.png",
+      image: fglab2,
       path: "https://jampizan.github.io/FG_LAB2_Pizan/" 
     },
     {
       id: 2,
       title: "React Routes",
       description: "Building this project was a great way to see how client-side routing makes a web app feel seamless by moving between pages without a full browser refresh. Integrating Bootstrap also made it much easier to design a structured navigation system that looks professional and stays organized.",
-      image: "src/assets/mglab5.png",
+      image: mglab5,
       path: "https://jampizan.github.io/mg-lab5-pizan/"
     },
     {
       id: 3,
       title: "Components in React",
       description: "This project was a great deep dive into how a full-stack application actually communicates, specifically by connecting a React frontend to a MongoDB database. It really helped me understand the flow of data—from capturing user input in a feedback form to ensuring it’s properly stored and managed through a backend API.",
-      image: "src/assets/finalslab2.png",
+      image: finalslab2,
       path: "https://jampizan.github.io/mg-lab5-pizan/"
     },
     {
       id: 4,
       title: "React Routes",
       description: "Building this project really helped me understand how client-side routing creates a seamless experience by letting users navigate without a full page refresh. Integrating Bootstrap was also a huge help in keeping the multi-page layout organized and the navigation system feeling professional.",
-      image: "src/assets/mglab6.png",
+      image: mglab6,
       path: "https://jampizan.github.io/mg-lab6-pizan/"
     },
     {
       id: 5,
       title: "My Portfolio",
       description: "Building this personal portfolio was a rewarding way to bring together everything I’ve learned about modern front-end development, from TypeScript type safety to seamless React Router navigation. Integrating the EmailJS API was a highlight, as it turned a simple contact form into a functional tool that connects directly to my Gmail, making the whole project feel professional and ready for the real world.",
-      image: "src/assets/portfolio.png",
+      image: portfolio,
       path: "https://jampizan.github.io/portfolio-app/"
     }
     
@@ -110,13 +116,24 @@ export default function Project() {
             <img src={project.image} alt={project.title} style={styles.image} />
             <h3 style={styles.projectTitle}>{project.title}</h3>
             <p style={styles.projectDescription}>{project.description}</p>
-            
-            <Link to={project.path} style={styles.viewLink}>
-              View Project →
-            </Link>
+        {project.path.startsWith('http') ? (
+        <a 
+            href={project.path} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            style={styles.viewLink}
+        >
+        View Project →
+        </a>
+        ) : (
+        <Link to={project.path} style={styles.viewLink}>
+            View Project →
+    </Link>
+)}
           </div>
         ))}
       </div>
     </div>
   );
 }
+
